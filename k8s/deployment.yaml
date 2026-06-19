@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 77873h0e-4605-development
+  namespace: qb-prototypes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 77873h0e-4605-development
+  template:
+    metadata:
+      labels:
+        app: 77873h0e-4605-development
+    spec:
+      imagePullSecrets:
+      - name: qtn-dockerhub
+      containers:
+      - name: web
+        image: quantumteknologi/qb-remix-base:12-06-2026-77873h0e-4605-development
+        imagePullPolicy: IfNotPresent
+        command: ["/usr/local/bin/entrypoint.sh"]
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+          limits:
+            cpu: "2"
+            memory: "2Gi"
+        volumeMounts:
+        - name: app-source
+          mountPath: /app
+      volumes:
+      - name: app-source
+        emptyDir: {}

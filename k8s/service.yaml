@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: qb-77873h0e-4605-development-svc
+  namespace: qb-prototypes
+spec:
+  selector:
+    app: 77873h0e-4605-development
+  ports:
+  - port: 80
+    targetPort: 3000
